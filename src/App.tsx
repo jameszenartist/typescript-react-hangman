@@ -1,10 +1,8 @@
 import styles from "./css/App.module.css";
-
 import { useCallback, useEffect, useState } from "react";
 import { HangmanDrawing } from "./components/HangmanDrawing";
 import { HangmanWord } from "./components/HangmanWord";
 import { Keyboard } from "./components/Keyboard";
-
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -32,7 +30,7 @@ function App() {
   );
 
   //fetch random word from API:
-  async function fetchData() {
+  async function fetchData(): Promise<void> {
     const response = await fetch(`${BASE_URL}`, {
       method: "GET",
       headers: {
@@ -44,6 +42,8 @@ function App() {
   }
 
   useEffect(() => {
+    console.log(`useeffect called!`);
+
     try {
       let isMounted = true;
 
@@ -59,12 +59,32 @@ function App() {
 
   useEffect(() => {
     try {
-      console.log(`useeffect called!`);
+      console.log(`useeffect 2 called!`);
       const handler = (e: KeyboardEvent) => {
         const key = e.key;
         if (!key.match(/^[a-zA-Z]$/)) return;
         e.preventDefault();
         addGuessedLetter(key);
+      };
+      document.addEventListener("keypress", handler);
+      return () => {
+        document.removeEventListener("keypress", handler);
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  }, [guessedLetters]);
+
+  useEffect(() => {
+    console.log(`useeffect 3 called!`);
+    try {
+      const handler = async (e: KeyboardEvent) => {
+        const key = e.key;
+        if (key !== "Enter") return;
+        e.preventDefault();
+        setGuessedLetters([]);
+        let result: any = await fetchData();
+        setWordToGuess(result.toString());
       };
 
       document.addEventListener("keypress", handler);
@@ -75,34 +95,12 @@ function App() {
     } catch (err) {
       console.log(err);
     }
-  }, [guessedLetters]);
-
-  useEffect(() => {
-    let isMounted = true;
-    console.log(`useeffect2 called!`);
-    const handler = (e: KeyboardEvent) => {
-      const key = e.key;
-      if (key !== "Enter") return;
-      e.preventDefault();
-      setGuessedLetters([]);
-      let result = fetchData();
-      setWordToGuess(result.toString());
-      return () => {
-        isMounted = !isMounted;
-      };
-    };
-
-    document.addEventListener("keypress", handler);
-
-    return () => {
-      document.removeEventListener("keypress", handler);
-    };
   }, []);
 
   return (
     <div className={`${styles.container}`}>
       <div className={`${styles.win_lose}`}>
-        {isWinner && "Winner! - Refresh to try again"}
+        {isWinner && wordToGuess !== "" && "Winner! - Refresh to try again"}
         {isLoser && "Nice Try! - Refresh to try again"}
       </div>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
