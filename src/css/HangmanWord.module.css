@@ -1,0 +1,34 @@
+.text {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: monospace;
+}
+
+.under_letter {
+  border-bottom: 0.1em solid #f00e2e;
+}
+
+@media only screen and (max-width: 769px) {
+  .text {
+    transform: scale(0.8);
+    font-size: 5rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .text {
+    width: 80%;
+    transform: scale(0.7);
+    font-size: 4rem;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .text {
+    transform: scale(0.6);
+  }
+}

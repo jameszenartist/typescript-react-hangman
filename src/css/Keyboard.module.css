@@ -1,0 +1,72 @@
+.btn {
+  width: 100%;
+  border: 3px solid #f00e2e;
+  background: none;
+  aspect-ratio: 1 / 1;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #f00e2e;
+}
+
+.btn.active {
+  box-shadow: 0 0 15px #f00e2e;
+  filter: brightness(1.5);
+}
+
+.btn.inactive {
+  opacity: 0.3;
+}
+
+.btn:hover:not(:disabled),
+.btn:focus:not(:disabled) {
+  box-shadow: 0 0 15px #f00e2e;
+  filter: brightness(1.5);
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  gap: 0.5rem;
+}
+
+@media only screen and (max-width: 769px) {
+  .container {
+    max-width: 600px;
+  }
+  .keyboard {
+    transform: scale(0.8);
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  .keyboard {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  }
+  .btn {
+    padding: 0.25rem;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .keyboard {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .keyboard {
+    transform: scale(0.8);
+  }
+  .btn {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 265px) {
+  .keyboard {
+    transform: scale(0.6);
+  }
+}
