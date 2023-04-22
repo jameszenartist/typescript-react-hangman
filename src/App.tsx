@@ -12,7 +12,7 @@ function App() {
 
   //typescript array of strings
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
-  console.log(wordToGuess);
+
   const incorrectLetters = guessedLetters.filter(
     (letter) => !wordToGuess.includes(letter)
   );
@@ -47,7 +47,7 @@ function App() {
       let isMounted = true;
 
       fetchData();
-      console.log(wordToGuess);
+
       return () => {
         isMounted = !isMounted;
       };
