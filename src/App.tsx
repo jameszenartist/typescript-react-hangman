@@ -1,12 +1,22 @@
 import styles from "./css/App.module.css";
-import { useCallback, useEffect, useState } from "react";
+import {
+  EventHandler,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { HangmanDrawing } from "./components/HangmanDrawing";
 import { HangmanWord } from "./components/HangmanWord";
 import { Keyboard } from "./components/Keyboard";
+import { Sidebar } from "./components/Sidebar";
+import { FiRefreshCw } from "react-icons/fi";
+
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
+  const [useOverlay, setUseOverlay] = useState<boolean>(false);
   const [wordToGuess, setWordToGuess] = useState<string>("");
 
   //typescript array of strings
@@ -97,8 +107,34 @@ function App() {
     }
   }, []);
 
+  const handleClick = useCallback(() => {
+    console.log("overlay status changed");
+    setUseOverlay((prev) => !prev);
+  }, []);
+
+  function handleRefresh() {
+    const refreshBtn = document.querySelector<HTMLElement>(".refresh")!;
+    refreshBtn.addEventListener("click", handleClick);
+
+    return () => {
+      refreshBtn.removeEventListener("click", handleClick);
+    };
+  }
+  console.log(useOverlay);
+
+  useEffect(() => {
+    // handleRefresh();
+  }, [handleClick]);
+
   return (
     <div className={`${styles.container}`}>
+      <div
+        className={`${useOverlay && styles.overlay}`}
+        onClick={handleClick}
+      ></div>
+      <FiRefreshCw className={styles.open_sidebar} onClick={handleClick} />
+      <Sidebar useOverlay={useOverlay} handleClick={handleClick} />
+
       <div className={`${styles.win_lose}`}>
         {isWinner && wordToGuess !== "" && "Winner! - Refresh to try again"}
         {isLoser && "Nice Try! - Refresh to try again"}
