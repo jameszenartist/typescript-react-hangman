@@ -1,23 +1,19 @@
 import styles from "./css/App.module.css";
-import {
-  EventHandler,
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import randomWords from "random-words";
+import { useCallback, useEffect, useState } from "react";
 import { HangmanDrawing } from "./components/HangmanDrawing";
 import { HangmanWord } from "./components/HangmanWord";
 import { Keyboard } from "./components/Keyboard";
 import { Sidebar } from "./components/Sidebar";
 import { FiRefreshCw } from "react-icons/fi";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const API_KEY = import.meta.env.VITE_API_KEY;
+// const BASE_URL = import.meta.env.VITE_BASE_URL;
+// const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
   const [useOverlay, setUseOverlay] = useState<boolean>(false);
   const [wordToGuess, setWordToGuess] = useState<string>("");
+  const [newWord, setNewWord] = useState<boolean>(false);
 
   //typescript array of strings
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
@@ -39,16 +35,31 @@ function App() {
     [guessedLetters, isWinner, isLoser]
   );
 
+  //handles overlay state
+  const handleClick = useCallback(() => {
+    console.log("overlay status changed");
+    setUseOverlay((prev) => !prev);
+  }, []);
+
+  //new word btn calls this to trigger fetch
+  const getNewWord = useCallback(() => {
+    setNewWord((prev) => !prev);
+  }, [newWord]);
+
   //fetch random word from API:
   async function fetchData(): Promise<void> {
-    const response = await fetch(`${BASE_URL}`, {
-      method: "GET",
-      headers: {
-        "X-Api-Key": `${API_KEY}`,
-      },
-    });
-    const { word } = await response.json();
-    setWordToGuess(word);
+    // const response = await fetch(`${BASE_URL}`, {
+    //   method: "GET",
+    //   headers: {
+    //     "X-Api-Key": `${API_KEY}`,
+    //   },
+    // });
+    // const { word } = await response.json();
+
+    // console.log(randomWords({ minLength: 2 }));
+
+    const word: string[] = randomWords(1);
+    setWordToGuess(word[0]);
   }
 
   useEffect(() => {
@@ -65,7 +76,7 @@ function App() {
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [newWord]);
 
   useEffect(() => {
     try {
@@ -107,24 +118,7 @@ function App() {
     }
   }, []);
 
-  const handleClick = useCallback(() => {
-    console.log("overlay status changed");
-    setUseOverlay((prev) => !prev);
-  }, []);
-
-  function handleRefresh() {
-    const refreshBtn = document.querySelector<HTMLElement>(".refresh")!;
-    refreshBtn.addEventListener("click", handleClick);
-
-    return () => {
-      refreshBtn.removeEventListener("click", handleClick);
-    };
-  }
-  console.log(useOverlay);
-
-  useEffect(() => {
-    // handleRefresh();
-  }, [handleClick]);
+  // console.log(useOverlay);
 
   return (
     <div className={`${styles.container}`}>
@@ -132,8 +126,17 @@ function App() {
         className={`${useOverlay && styles.overlay}`}
         onClick={handleClick}
       ></div>
-      <FiRefreshCw className={styles.open_sidebar} onClick={handleClick} />
-      <Sidebar useOverlay={useOverlay} handleClick={handleClick} />
+      <FiRefreshCw
+        className={`${styles.open_sidebar} ${
+          useOverlay ? styles.rotate_icon : ""
+        }`}
+        onClick={handleClick}
+      />
+      <Sidebar
+        useOverlay={useOverlay}
+        handleClick={handleClick}
+        getNewWord={getNewWord}
+      />
 
       <div className={`${styles.win_lose}`}>
         {isWinner && wordToGuess !== "" && "Winner! - Refresh to try again"}
