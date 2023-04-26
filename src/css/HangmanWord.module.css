@@ -1,3 +1,11 @@
+:root {
+  --pur-1: #421c52;
+  --pur-2: #732c7b;
+  --pur-3: #9c8aa5;
+  --pur-4: #bdaec6;
+  --pur-5: #ffffff;
+}
+
 .text {
   display: flex;
   gap: 0.25rem;
@@ -8,7 +16,7 @@
 }
 
 .under_letter {
-  border-bottom: 0.1em solid #f00e2e;
+  border-bottom: 0.1em solid var(--pur-5);
 }
 
 @media only screen and (max-width: 769px) {

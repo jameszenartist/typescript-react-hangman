@@ -1,6 +1,14 @@
+:root {
+  --pur-1: #421c52;
+  --pur-2: #732c7b;
+  --pur-3: #9c8aa5;
+  --pur-4: #bdaec6;
+  --pur-5: #ffffff;
+}
+
 .btn {
   width: 100%;
-  border: 3px solid #f00e2e;
+  border: 3px solid var(--pur-5);
   background: none;
   aspect-ratio: 1 / 1;
   font-size: 2.5rem;
@@ -8,11 +16,11 @@
   padding: 0.5rem;
   font-weight: bold;
   cursor: pointer;
-  color: #f00e2e;
+  color: var(--pur-5);
 }
 
 .btn.active {
-  box-shadow: 0 0 15px #f00e2e;
+  box-shadow: var(--pur-5) 0px 0px 10px;
   filter: brightness(1.5);
 }
 
@@ -22,7 +30,7 @@
 
 .btn:hover:not(:disabled),
 .btn:focus:not(:disabled) {
-  box-shadow: 0 0 15px #f00e2e;
+  box-shadow: var(--pur-5) 0px 0px 10px;
   filter: brightness(1.5);
 }
 

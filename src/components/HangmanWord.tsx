@@ -23,8 +23,8 @@ export function HangmanWord({
                   : "hidden",
               color:
                 !guessedLetters.includes(letter) && reveal
-                  ? "#f00e2e"
-                  : "#f00e2e",
+                  ? "#ffffff"
+                  : "#ffffff",
             }}
           >
             {letter}

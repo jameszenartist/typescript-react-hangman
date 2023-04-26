@@ -1,11 +1,20 @@
+:root {
+  --pur-1: #421c52;
+  --pur-2: #732c7b;
+  --pur-3: #9c8aa5;
+  --pur-4: #bdaec6;
+  --pur-5: #ffffff;
+}
+
 html {
-  background-color: #0a0505 !important;
+  background-image: linear-gradient(6deg, #214, #000);
 }
 body {
-  background: #0a0505;
+  background-image: linear-gradient(6deg, #214, #000);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  color: var(--pur-5);
 }
 
 ::-webkit-scrollbar {
@@ -24,7 +33,7 @@ body {
 .win_lose {
   font-size: 2rem;
   text-align: center;
-  color: #f00e2e;
+  color: var(--pur-5);
 }
 
 .keyboard_stretch {
@@ -33,7 +42,7 @@ body {
 
 .overlay:not(:disabled) {
   opacity: 0.5;
-  background: #000;
+  background-image: linear-gradient(6deg, #214, #000);
   width: 100%;
   height: 100%;
   z-index: 10;
@@ -43,9 +52,9 @@ body {
 }
 
 .open_sidebar {
-  color: #f00e2e;
+  color: var(--pur-5);
   font-size: 2rem;
-  background: #000;
+  background: none;
   position: absolute;
   padding: 1rem;
   top: 0;
@@ -66,13 +75,13 @@ body {
 .sidebar {
   padding: 1rem;
   font-size: 1rem;
-  background: #000;
+  background-image: linear-gradient(6deg, #214, #000);
   position: absolute;
   top: 0;
   right: 0;
   width: 20%;
   height: 100%;
-  border-left: 2px solid #f00e2e;
+  border-left: 2px solid var(--pur-5);
   z-index: 10;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
@@ -84,20 +93,22 @@ body {
 }
 
 .sidebar_close {
+  background: none;
   position: absolute;
   top: 0;
   right: 10px;
   width: 20%;
-  background: #000;
   font-size: 2.5rem;
   padding: 0.5rem 1rem;
-  color: #f00e2e;
+  color: var(--pur-5);
   text-transform: uppercase;
   font-family: monospace;
   border: none;
+  cursor: pointer;
 }
 
 .btn_group {
+  background: none;
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
@@ -105,26 +116,27 @@ body {
   align-items: center;
 }
 .btn_group button {
+  background: none;
   margin: 1rem 0;
   text-transform: uppercase;
   font-family: monospace;
+  cursor: pointer;
 }
 
 button.refresh {
-  background: #000;
   font-size: 1.25rem;
   padding: 0.5rem 1rem;
-  color: #f00e2e;
-  border: 2px solid #f00e2e;
+  color: var(--pur-5);
+  border: 2px solid var(--pur-5);
   border-radius: 6px;
 }
 
 .about,
 .contact {
-  background: #000;
+  background-image: linear-gradient(6deg, #214, #000);
   font-size: 1.25rem;
   padding: 0.5rem 1rem;
-  color: #f00e2e;
+  color: var(--pur-5);
   border: none;
 }
 
