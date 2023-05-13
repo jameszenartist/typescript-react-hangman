@@ -58,6 +58,7 @@ function App() {
 
     // console.log(randomWords({ minLength: 2 }));
 
+    // here using randomWords npm pkg. instead of prev API
     const word: string[] = randomWords(1);
     setWordToGuess(word[0]);
   }
