@@ -1,6 +1,10 @@
 import styles from "./css/App.module.css";
 import randomWords from "random-words";
+import { Routes, Route } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
+
 import { HangmanDrawing } from "./components/HangmanDrawing";
 import { HangmanWord } from "./components/HangmanWord";
 import { Keyboard } from "./components/Keyboard";
@@ -122,44 +126,59 @@ function App() {
   // console.log(useOverlay);
 
   return (
-    <div className={`${styles.container}`}>
-      <div
-        className={`${useOverlay && styles.overlay}`}
-        onClick={handleClick}
-      ></div>
-      <FiRefreshCw
-        className={`${styles.open_sidebar} ${
-          useOverlay ? styles.rotate_icon : ""
-        }`}
-        onClick={handleClick}
-      />
-      <Sidebar
-        useOverlay={useOverlay}
-        handleClick={handleClick}
-        getNewWord={getNewWord}
-      />
-
-      <div className={`${styles.win_lose}`}>
-        {isWinner && wordToGuess !== "" && "Winner! - Refresh to try again"}
-        {isLoser && "Nice Try! - Refresh to try again"}
-      </div>
-      <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
-      <HangmanWord
-        reveal={isLoser}
-        guessedLetters={guessedLetters}
-        wordToGuess={wordToGuess}
-      />
-      <div className={`${styles.keyboard_stretch}`}>
-        <Keyboard
-          disabled={isWinner || isLoser}
-          activeLetters={guessedLetters.filter((letter) =>
-            wordToGuess.includes(letter)
-          )}
-          inactiveLetters={incorrectLetters}
-          addGuessedLetter={addGuessedLetter}
+    <>
+      <div className={`${styles.container}`}>
+        <div
+          className={`${useOverlay && styles.overlay}`}
+          onClick={handleClick}
+        ></div>
+        <FiRefreshCw
+          className={`${styles.open_sidebar} ${
+            useOverlay ? styles.rotate_icon : ""
+          }`}
+          onClick={handleClick}
+        />
+        <Sidebar
+          useOverlay={useOverlay}
+          handleClick={handleClick}
+          getNewWord={getNewWord}
         />
       </div>
-    </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className={`${styles.container}`}>
+              <div className={`${styles.win_lose}`}>
+                {isWinner &&
+                  wordToGuess !== "" &&
+                  "Winner! - Refresh to try again"}
+                {isLoser && "Nice Try! - Refresh to try again"}
+              </div>
+              <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
+              <HangmanWord
+                reveal={isLoser}
+                guessedLetters={guessedLetters}
+                wordToGuess={wordToGuess}
+              />
+              <div className={`${styles.keyboard_stretch}`}>
+                <Keyboard
+                  disabled={isWinner || isLoser}
+                  activeLetters={guessedLetters.filter((letter) =>
+                    wordToGuess.includes(letter)
+                  )}
+                  inactiveLetters={incorrectLetters}
+                  addGuessedLetter={addGuessedLetter}
+                />
+              </div>
+            </div>
+          }
+        />
+
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+      </Routes>
+    </>
   );
 }
 

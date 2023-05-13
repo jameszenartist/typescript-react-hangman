@@ -1,4 +1,5 @@
 import styles from "../css/App.module.css";
+import { Link } from "react-router-dom";
 
 type SidebarProps = {
   useOverlay: boolean;
@@ -22,8 +23,21 @@ export function Sidebar<T>({
         <button className={`${styles.refresh}`} onClick={getNewWord}>
           New Word?
         </button>
-        <button className={`${styles.about}`}>-About</button>
-        <button className={`${styles.contact}`}>-Contact</button>
+        <Link to="/">
+          <button className={`${styles.home}`} type="button">
+            -Home
+          </button>
+        </Link>
+        <Link to="about">
+          <button className={`${styles.about}`} type="button">
+            -About
+          </button>
+        </Link>
+        <Link to="contact">
+          <button className={`${styles.contact}`} type="button">
+            -Contact
+          </button>
+        </Link>
       </div>
     </div>
   );
