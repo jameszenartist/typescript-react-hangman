@@ -108,13 +108,21 @@
   }
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 730px) {
   .wireframe {
+    margin: -2rem auto;
+  }
+}
+
+@media only screen and (max-width: 485px) {
+  .wireframe {
+    margin: -10% auto;
+
     transform: scale(0.6);
   }
 }
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 430px) {
   .wireframe {
     transform: scale(0.5);
   }

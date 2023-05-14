@@ -49,6 +49,19 @@
   }
   .keyboard {
     transform: scale(0.8);
+    margin-bottom: 1rem;
+  }
+}
+
+@media only screen and (max-width: 565px) {
+  .keyboard {
+    transform: scale(0.7);
+  }
+}
+
+@media only screen and (max-width: 485px) {
+  .keyboard {
+    margin: -20% auto;
   }
 }
 
@@ -68,9 +81,6 @@
 }
 
 @media only screen and (max-width: 330px) {
-  .keyboard {
-    transform: scale(0.8);
-  }
   .btn {
     font-size: 2rem;
   }

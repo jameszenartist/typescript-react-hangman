@@ -26,10 +26,22 @@
   }
 }
 
+@media only screen and (max-width: 565px) {
+  .text {
+    margin: -2rem auto;
+    transform: scale(0.7);
+  }
+}
+
+@media only screen and (max-width: 485px) {
+  .text {
+    font-size: 4rem;
+  }
+}
+
 @media only screen and (max-width: 400px) {
   .text {
     width: 80%;
-    transform: scale(0.7);
     font-size: 4rem;
     justify-content: center;
   }
