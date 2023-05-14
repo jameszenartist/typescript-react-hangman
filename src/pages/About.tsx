@@ -24,7 +24,7 @@ export function About<T>({}: AboutProps) {
         While most of my experience has been in Web Development, I’d love to
         continue to make more games like these and others in increasing
         complexity. If you’re interested in more of my projects, they can be
-        found{" "}
+        found
         <a href="https://github.com/jameszenartist" target="_blank">
           here
         </a>
