@@ -12,3 +12,31 @@
   align-items: center;
   text-align: center;
 }
+
+form {
+  text-align: left;
+  color: var(--pur-5);
+}
+input,
+textarea,
+form button {
+  margin: 1rem;
+  background-color: transparent;
+  border: 1px solid var(--pur-5);
+  padding: 0.5rem 1rem;
+}
+
+input:hover,
+textarea:hover,
+form button:hover {
+  box-shadow: var(--pur-5) 0px 0px 10px;
+}
+
+textarea,
+input,
+label,
+p,
+form button {
+  font-size: 1.25rem;
+  color: var(--pur-5);
+}
