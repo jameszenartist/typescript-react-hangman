@@ -6,15 +6,13 @@
   --pur-5: #ffffff;
 }
 
-html {
-  background-image: linear-gradient(6deg, #214, #000);
-}
 body {
+  height: 100vh;
   background-image: linear-gradient(6deg, #214, #000);
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
   color: var(--pur-5);
+  margin: 0;
+  padding: auto;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {

@@ -22,6 +22,9 @@
 .btn.active {
   box-shadow: var(--pur-5) 0px 0px 10px;
   filter: brightness(1.5);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .btn.inactive {
