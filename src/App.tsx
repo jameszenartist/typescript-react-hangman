@@ -84,24 +84,6 @@ function App() {
   }, [newWord]);
 
   useEffect(() => {
-    try {
-      console.log(`useeffect 2 called!`);
-      const handler = (e: KeyboardEvent) => {
-        const key = e.key;
-        if (!key.match(/^[a-zA-Z]$/)) return;
-        e.preventDefault();
-        addGuessedLetter(key);
-      };
-      document.addEventListener("keypress", handler);
-      return () => {
-        document.removeEventListener("keypress", handler);
-      };
-    } catch (err) {
-      console.log(err);
-    }
-  }, [guessedLetters]);
-
-  useEffect(() => {
     console.log(`useeffect 3 called!`);
     try {
       const handler = async (e: KeyboardEvent) => {
@@ -109,8 +91,8 @@ function App() {
         if (key !== "Enter") return;
         e.preventDefault();
         setGuessedLetters([]);
-        let result: any = await fetchData();
-        setWordToGuess(result.toString());
+
+        await fetchData();
       };
 
       document.addEventListener("keypress", handler);
@@ -160,6 +142,7 @@ function App() {
                 reveal={isLoser}
                 guessedLetters={guessedLetters}
                 wordToGuess={wordToGuess}
+                addGuessedLetter={addGuessedLetter}
               />
               <div className={`${styles.keyboard_stretch}`}>
                 <Keyboard
