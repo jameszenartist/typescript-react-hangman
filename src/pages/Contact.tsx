@@ -14,6 +14,8 @@ export function Contact<T>({}: ContactProps) {
         know more, please don't hesitate to ask!
       </h2>
       <br />
+      <h1>**Messaging functionality currently in progress**</h1>
+      <br />
       <Form />
     </div>
   );
