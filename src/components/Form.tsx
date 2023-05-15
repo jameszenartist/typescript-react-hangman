@@ -13,10 +13,6 @@ export function Form() {
     user_email: "",
     message: "",
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> testuibranch
   const form = useRef<HTMLFormElement | null>(null);
   const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
 
@@ -47,37 +43,23 @@ export function Form() {
         }
       );
     setFormValues({
-<<<<<<< HEAD
-      name: "",
-      email: "",
-=======
       from_name: "",
       user_email: "",
->>>>>>> testuibranch
       message: "",
     });
   };
 
   return (
     <>
-<<<<<<< HEAD
-      <form ref={form} method="POST" onSubmit={handleSubmit}>
-        <label htmlFor="name">
-=======
       <form ref={form} onSubmit={handleSubmit}>
         <label htmlFor="from_name">
->>>>>>> testuibranch
           Name:
           <br />
         </label>
         <input
           type="text"
           name="from_name"
-<<<<<<< HEAD
-          value={formValues.name}
-=======
           value={formValues.from_name}
->>>>>>> testuibranch
           onChange={handleInputChange}
           size={20}
           placeholder="Enter your name"
@@ -92,11 +74,7 @@ export function Form() {
         <input
           type="email"
           name="user_email"
-<<<<<<< HEAD
-          value={formValues.email}
-=======
           value={formValues.user_email}
->>>>>>> testuibranch
           onChange={handleInputChange}
           size={20}
           placeholder="Enter your email"
