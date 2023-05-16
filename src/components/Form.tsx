@@ -32,7 +32,7 @@ export function Form() {
         "VITE_SERVICE_ID",
         "VITE_TEMPLATE_ID",
         form.current!,
-        "VITE_PUBLIC_KEY"
+        "VITE_YOUR_PUBLIC_KEY"
       )
       .then(
         (result) => {
