@@ -3,17 +3,11 @@ import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 export function Form() {
-  // let VITE_SERVICE_ID: string = import.meta.env.VITE_SERVICE_ID;
+  let VITE_SERVICE_ID: string = import.meta.env.VITE_SERVICE_ID;
 
-  // let VITE_TEMPLATE_ID: string = import.meta.env.VITE_TEMPLATE_ID;
+  let VITE_TEMPLATE_ID: string = import.meta.env.VITE_TEMPLATE_ID;
 
-  // let VITE_PUBLIC_KEY: string = import.meta.env.VITE_PUBLIC_KEY;
-
-  let VITE_SERVICE_ID: string;
-
-  let VITE_TEMPLATE_ID: string;
-
-  let VITE_PUBLIC_KEY: string;
+  let VITE_PUBLIC_KEY: string = import.meta.env.VITE_PUBLIC_KEY;
 
   interface FormValues {
     from_name: string;
@@ -44,7 +38,7 @@ export function Form() {
         VITE_SERVICE_ID,
         VITE_TEMPLATE_ID,
         form.current!,
-        `${VITE_PUBLIC_KEY}`
+        VITE_PUBLIC_KEY
       )
       .then(
         (result) => {
