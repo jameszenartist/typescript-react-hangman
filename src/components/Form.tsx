@@ -4,9 +4,7 @@ import emailjs from "@emailjs/browser";
 
 export function Form() {
   let VITE_SERVICE_ID: string = import.meta.env.VITE_SERVICE_ID;
-
   let VITE_TEMPLATE_ID: string = import.meta.env.VITE_TEMPLATE_ID;
-
   let VITE_PUBLIC_KEY: string = import.meta.env.VITE_PUBLIC_KEY;
 
   interface FormValues {
