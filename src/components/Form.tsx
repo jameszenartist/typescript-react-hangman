@@ -1,6 +1,8 @@
 import styles from "../css/Contact.module.css";
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 export function Form() {
   let VITE_SERVICE_ID: string = import.meta.env.VITE_SERVICE_ID;
@@ -19,6 +21,34 @@ export function Form() {
   };
   const form = useRef<HTMLFormElement | null>(null);
   const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
+  const [alertType, setAlertType] = useState<string | null>(null);
+
+  function BasicAlerts() {
+    return (
+      <Stack sx={{ width: "50%" }} spacing={2}>
+        {alertType === "error" && (
+          <Alert
+            className={styles.alert}
+            variant="outlined"
+            severity="error"
+            onClose={() => setAlertType(null)}
+          >
+            Oops! Something went wrong!
+          </Alert>
+        )}
+        {alertType === "success" && (
+          <Alert
+            className={styles.alert}
+            variant="outlined"
+            severity="success"
+            onClose={() => setAlertType(null)}
+          >
+            Message sent!
+          </Alert>
+        )}
+      </Stack>
+    );
+  }
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -38,14 +68,20 @@ export function Form() {
         form.current!,
         VITE_PUBLIC_KEY
       )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+      .then((result) => {
+        console.log(result.text);
+        setAlertType("success");
+        setTimeout(() => {
+          setAlertType(null);
+        }, 4000);
+      })
+      .catch((error) => {
+        console.log(error.text);
+        setAlertType("error");
+        setTimeout(() => {
+          setAlertType(null);
+        }, 4000);
+      });
     setFormValues({
       from_name: "",
       user_email: "",
@@ -56,6 +92,8 @@ export function Form() {
   return (
     <>
       <form ref={form} onSubmit={handleSubmit}>
+        <BasicAlerts />
+        <br />
         <label htmlFor="from_name">
           Name:
           <br />
@@ -85,6 +123,7 @@ export function Form() {
           required
           aria-required="true"
         />
+
         <p>
           <br />
           <br />
