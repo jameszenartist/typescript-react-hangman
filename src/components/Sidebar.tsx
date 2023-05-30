@@ -13,9 +13,7 @@ export function Sidebar<T>({
   getNewWord,
 }: SidebarProps) {
   return (
-    <div
-      className={`${styles.sidebar} ${useOverlay ? styles.sidebar_open : ""}`}
-    >
+    <div>
       <button className={`${styles.sidebar_close}`} onClick={handleClick}>
         &times;
       </button>

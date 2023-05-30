@@ -1,4 +1,5 @@
 import styles from "./css/App.module.css";
+import { motion, AnimatePresence } from "framer-motion";
 import randomWords from "random-words";
 import { Routes, Route } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
@@ -106,8 +107,6 @@ function App() {
     }
   }, []);
 
-  // console.log(useOverlay);
-
   return (
     <>
       <div className={`${styles.container}`}>
@@ -121,11 +120,29 @@ function App() {
           }`}
           onClick={handleClick}
         />
-        <Sidebar
-          useOverlay={useOverlay}
-          handleClick={handleClick}
-          getNewWord={getNewWord}
-        />
+        {useOverlay && (
+          <AnimatePresence>
+            <motion.div
+              key="sidebar"
+              initial={{ opacity: 0, x: "100" }}
+              animate={{
+                opacity: 1,
+                x: "-100",
+              }}
+              exit={{
+                opacity: 0,
+                x: "100",
+              }}
+              className={`${styles.sidebar}`}
+            >
+              <Sidebar
+                useOverlay={useOverlay}
+                handleClick={handleClick}
+                getNewWord={getNewWord}
+              />
+            </motion.div>
+          </AnimatePresence>
+        )}
       </div>
       <Routes>
         <Route

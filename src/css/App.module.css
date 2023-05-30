@@ -81,13 +81,6 @@ body {
   height: 100%;
   border-left: 2px solid var(--pur-5);
   z-index: 10;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
-  transition-delay: 0.2s;
-}
-
-.sidebar_open {
-  transform: translateX(0);
 }
 
 .sidebar_close {
