@@ -47,6 +47,7 @@ function App() {
 
   //new word btn calls this to trigger fetch
   const getNewWord = useCallback(() => {
+    setGuessedLetters([]);
     setNewWord((prev) => !prev);
   }, [newWord]);
 
