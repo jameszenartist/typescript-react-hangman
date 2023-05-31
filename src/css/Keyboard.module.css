@@ -74,9 +74,11 @@
   }
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 380px) {
   .keyboard {
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    margin-left: -10%;
+    margin-right: -10%;
   }
 }
 
